@@ -4,6 +4,7 @@ import { FaUser } from 'react-icons/fa';
 import { register, reset } from '../features/auth/authSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../components/Spinner';
 
 function Register() {
   const navigate = useNavigate();
@@ -23,6 +24,9 @@ function Register() {
 
   const { name, email, password, password2 } = formData;
 
+  // ----------------------------------------------------
+  // useEffect
+  // ----------------------------------------------------
   useEffect(() => {
     if (isError) {
       toast.error(message);
@@ -36,6 +40,9 @@ function Register() {
     dispatch(reset());
   }, [isError, isSuccess, user, message, navigate, dispatch]);
 
+  // ----------------------------------------------------
+  // onChange
+  // ----------------------------------------------------
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -43,6 +50,9 @@ function Register() {
     }));
   };
 
+  // ----------------------------------------------------
+  // onSubmit
+  // ----------------------------------------------------
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -58,6 +68,11 @@ function Register() {
       dispatch(register(userData));
     }
   };
+
+  // ----------------------------------------------------
+  // Render
+  // ----------------------------------------------------
+  if (isLoading) return <Spinner />;
 
   return (
     <>
