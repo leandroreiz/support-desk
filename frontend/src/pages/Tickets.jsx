@@ -15,9 +15,11 @@ function Tickets() {
   // ----------------------------------------------------
   // useEffect
   // ----------------------------------------------------
-  // unmount (return) needed?
   useEffect(() => {
     dispatch(getTickets());
+
+    // Clear function
+    return () => dispatch(reset());
   }, [dispatch]);
 
   // ----------------------------------------------------
