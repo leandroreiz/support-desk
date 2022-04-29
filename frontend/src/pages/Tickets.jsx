@@ -6,9 +6,7 @@ import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 
 function Tickets() {
-  const { tickets, isLoading, isSuccess } = useSelector(
-    (state) => state.tickets
-  );
+  const { tickets, isLoading } = useSelector((state) => state.tickets);
 
   const dispatch = useDispatch();
 
